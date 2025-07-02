@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Animated Login Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #e0eafc, #cfdef3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .browser-mockup {
+      width: 400px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      background: white;
+      overflow: hidden;
+    }
+
+    .browser-header {
+      background: #f2f2f2;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .circle {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .red { background-color: #ff5f57; }
+    .yellow { background-color: #ffbd2e; }
+    .green { background-color: #28c840; }
+
+    .address-bar {
+      flex: 1;
+      margin-left: 10px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      background: #fff;
+      border: 1px solid #ccc;
+      font-size: 0.9em;
+    }
+
+    .form-container {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      animation: slideIn 1s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+    }
+
+    .form-container input[type="text"],
+    .form-container input[type="email"],
+    .form-container input[type="password"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      transition: 0.3s ease;
+    }
+
+    .form-container input:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    .form-container input[type="submit"] {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .form-container input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    .result {
+      display: none;
+      padding: 30px;
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .button-row {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .button-row button {
+      padding: 8px 12px;
+      background: #eee;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .button-row button:hover {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+
+<div class="browser-mockup">
+  <div class="browser-header">
+    <div class="circle red"></div>
+    <div class="circle yellow"></div>
+    <div class="circle green"></div>
+    <div class="address-bar">https://secure-login.com</div>
+  </div>
+
+  <form class="form-container" id="loginForm">
+    <input type="text" placeholder="Name" required>
+    <input type="email" placeholder="Email" required>
+    <input type="password" placeholder="Password" required>
+    <label>
+      <input type="checkbox" required> Agree to terms
+    </label>
+    <input type="submit" value="Login">
+  </form>
+
+  <div class="result" id="resultPage">
+    <h2>Welcome!</h2>
+    <p>You are now "logged in" to the mock browser UI.</p>
+    <div class="button-row">
+      <button onclick="alert('Settings Clicked')">Settings</button>
+      <button onclick="alert('Reloading...')">Reload</button>
+      <button onclick="alert('Going back')">Back</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('loginForm');
+  const result = document.getElementById('resultPage');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    form.style.display = 'none';
+    result.style.display = 'block';
+  });
+</script>
+
+</body>
+</html>
